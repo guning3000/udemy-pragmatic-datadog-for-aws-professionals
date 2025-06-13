@@ -1,2 +1,4 @@
 *.sw*
 sync.py
+
+build.sh
