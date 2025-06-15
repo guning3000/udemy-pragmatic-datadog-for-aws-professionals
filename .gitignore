@@ -1,7 +1,4 @@
 *.sw*
-sync.py
-
-build.sh
-
-build-grid.py
+*.sh
+*.py
 cmd
