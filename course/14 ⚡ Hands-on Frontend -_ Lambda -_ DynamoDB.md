@@ -1,0 +1,3 @@
+# 14 ⚡ Hands-on Frontend -> Lambda -> DynamoDB
+
+![](../imgs/4a64ec6dae78401fb0a5e0e586bd9df6.png)

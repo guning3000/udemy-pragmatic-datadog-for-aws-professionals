@@ -1,0 +1,3 @@
+# 41 ⚡ Hands-on EMR
+
+![](../imgs/8d93ce8aa4ca4aa299ea89649c1ed033.png)

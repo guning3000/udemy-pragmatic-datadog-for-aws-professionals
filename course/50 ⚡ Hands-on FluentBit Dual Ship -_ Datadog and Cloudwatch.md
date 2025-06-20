@@ -1,0 +1,3 @@
+# 50 ⚡ Hands-on FluentBit Dual Ship -> Datadog and Cloudwatch
+
+![](../imgs/e8c579413291443c8747af81c1ed6f2e.png)

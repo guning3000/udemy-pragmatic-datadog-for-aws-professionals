@@ -1,0 +1,3 @@
+# 61 ⚡ Hands-on Remediate using Monitors -> SNS
+
+![](../imgs/a8d1d299276840efa260905499c3c9fa.png)

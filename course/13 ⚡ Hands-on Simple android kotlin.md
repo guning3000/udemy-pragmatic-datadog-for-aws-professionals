@@ -1,0 +1,3 @@
+# 13 ⚡ Hands-on Simple android kotlin
+
+![](../imgs/b1de57270d034bc786e43f7759043be7.png)

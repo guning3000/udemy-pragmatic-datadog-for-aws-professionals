@@ -1,0 +1,3 @@
+# 19 ⚡ Hands-on Metric Stream
+
+![](../imgs/59cf2fe45dff4216af135bc4f5232946.png)

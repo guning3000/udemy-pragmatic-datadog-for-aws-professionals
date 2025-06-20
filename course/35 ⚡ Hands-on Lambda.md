@@ -1,0 +1,3 @@
+# 35 ⚡ Hands-on Lambda
+
+![](../imgs/4cc48aa363fb4fc483613ca8cb9f0f46.png)

@@ -1,0 +1,3 @@
+# 27 ⚡ Hands-on .NET
+
+![](../imgs/fab5a7169a91415f8ace79994c978dc6.png)

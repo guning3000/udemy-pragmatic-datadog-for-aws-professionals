@@ -1,0 +1,3 @@
+# 48 ⚡ Hands-on DSM Python Kafka
+
+![](../imgs/e4f4319cc4ac4ca8b8af9d398e3962bf.png)
