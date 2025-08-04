@@ -2,6 +2,24 @@
 
 ![](../imgs/6c11decad6c54b3eb90b39139d8505b5.png)
 
+
+```html
+<html>
+    <head>
+    </head>
+    <body>
+        <button style="font-size:80px;
+                       position:fixed;
+                       top:50%;
+                       left:50%;"
+                type="button" onclick="console.log('clicked');">
+            click me!
+        </button>
+    </body>
+</html>
+```
+
+
 https://docs.datadoghq.com/real_user_monitoring/browser/setup/client?tab=rum#cdn-async
 ```js
 <script>
