@@ -11,6 +11,11 @@ npm i -g @angular/cli
 ng new angular-app --no-strict
 ```
 
+start sample app
+```bash
+npm run start -- --host 0.0.0.0 
+```
+
 https://docs.datadoghq.com/real_user_monitoring/browser/setup/client?tab=rum#cdn-async
 ```js
 <script>
