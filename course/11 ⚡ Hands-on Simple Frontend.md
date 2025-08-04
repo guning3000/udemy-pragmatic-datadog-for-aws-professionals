@@ -2,7 +2,6 @@
 
 ![](../imgs/6c11decad6c54b3eb90b39139d8505b5.png)
 
-
 ```html
 <html>
     <head>
@@ -18,7 +17,6 @@
     </body>
 </html>
 ```
-
 
 https://docs.datadoghq.com/real_user_monitoring/browser/setup/client?tab=rum#cdn-async
 ```js

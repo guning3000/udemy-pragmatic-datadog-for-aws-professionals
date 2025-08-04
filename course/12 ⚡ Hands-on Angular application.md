@@ -5,8 +5,10 @@
 
 ```bash
 npm i -g @angular/cli
-ng new angular-project --no-strict
-npm install --save bootstrap@3
+```
+
+```bash
+ng new angular-app --no-strict
 ```
 
 https://docs.datadoghq.com/real_user_monitoring/browser/setup/client?tab=rum#cdn-async
