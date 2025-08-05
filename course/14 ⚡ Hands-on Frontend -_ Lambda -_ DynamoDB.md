@@ -43,7 +43,6 @@
     var gertrs = document.querySelector('#getrs')
 
     var url = 'myurl'
-    url = 'https://jvvuofoy6ufckcwtcfaq652fme0itkwj.lambda-url.us-east-1.on.aws/'
 
     postbutton.addEventListener('click', () => {
       postrs.value = 'posting..'
