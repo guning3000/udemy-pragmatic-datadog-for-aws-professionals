@@ -14,6 +14,9 @@
     * {
       font-size: 40px;
     }
+    textarea {
+      font-size:20px;
+    }
   </style>
 </head>
 <body>
