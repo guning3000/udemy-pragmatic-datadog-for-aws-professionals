@@ -28,7 +28,7 @@ provider "aws" {
 }
 
 resource "aws_lambda_function" "dd-lambda-forwarder" {
-  function_name = "my-ddog-lambda-forwarder"
+  function_name = "my-datadog-lambda-forwarder"
   handler      = "lambda_function.lambda_handler"
   runtime      = "python3.12"
   architectures = ["arm64"]
