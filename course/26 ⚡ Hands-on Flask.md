@@ -51,8 +51,8 @@ aws ecr create-repository --repository-name myflask
 build push
 ```bash
 docker build -t myflask .
-docker tag myflask 654654299310.dkr.ecr.us-east-1.amazonaws.com/myflask:latest
-docker push 654654299310.dkr.ecr.us-east-1.amazonaws.com/myflask:latest
+docker tag myflask $accid.dkr.ecr.us-east-1.amazonaws.com/myflask:latest
+docker push $accid.dkr.ecr.us-east-1.amazonaws.com/myflask:latest
 ```
 
 ## add datadog
