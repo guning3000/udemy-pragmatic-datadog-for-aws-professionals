@@ -71,6 +71,14 @@ docker push $accid.dkr.ecr.us-east-1.amazonaws.com/myflask:latest
 * `DD_LOGS_INJECTION`: `true`
 * `DD_TAGS`: `source:python,env:dev,service:myflask`
 
+```
+{ "DD_SERVICE": "myflask" },
+{ "DD_ENV": "dev" },
+{ "DD_VERSION": "1.0" },
+{ "DD_LOGS_INJECTION": "true" },
+{ "DD_TAGS": "source:python,env:dev,service:myflask" }
+```
+
 ### datadog-agent
 
 https://docs.datadoghq.com/integrations/aws-fargate/?tab=webui
@@ -82,6 +90,14 @@ https://docs.datadoghq.com/integrations/aws-fargate/?tab=webui
   * `DD_APM_ENABLED`: `true`
   * `DD_SITE`: `datadoghq.com`
   * `DD_TAGS`: `env:dev service:myflask`
+  
+```
+{ "DD_API_KEY": "myapikey" },
+{ "ECS_FARGATE": "true" },
+{ "DD_APM_ENABLED": "true" },
+{ "DD_SITE": "datadoghq.com" },
+{ "DD_TAGS": "env:dev service:myflask" }
+```
 
 ### add log firelens
 
