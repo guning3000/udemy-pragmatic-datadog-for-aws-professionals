@@ -73,7 +73,18 @@ import boto3
 def lambda_handler(event, context):
     ddb = boto3.client('dynamodb')
     tablename = 'mytb'
-    if event['requestContext']['http']['method'] == 'POST':
+    headers = {
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+          'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,traceparent,tracestate,x-datadog-origin,x-datadog-parent-id,x-datadog-sampling-priority,x-datadog-trace-id,referer,sec-ch-ua,sec-ch-mobile,sec-ch-ua-platform,user-agent',
+      }
+    if event['requestContext']['http']['method'] == 'OPTIONS':
+        return {
+            'statusCode': 200,
+            'headers': headers,
+        }
+    elif event['requestContext']['http']['method'] == 'POST':
         data = json.loads(event['body'])
         rs = ddb.put_item(
             TableName=tablename,
@@ -82,14 +93,21 @@ def lambda_handler(event, context):
                 "msg": {"S": data['msg']},
             }
         )
-        return json.dumps(rs)
+        return {
+            'headers': headers,
+            'body': json.dumps(rs)
+        }
     else:
         key = event['requestContext']['http']['path'][1:]
         rs = ddb.get_item(
             TableName=tablename,
             Key={"key": {"S": key}}
         )
-        return json.dumps(rs['Item'])
+        return {
+            'statusCode': 200,
+            'headers': headers,
+            'body': json.dumps(rs['Item'])
+        }
 ```
 
 
