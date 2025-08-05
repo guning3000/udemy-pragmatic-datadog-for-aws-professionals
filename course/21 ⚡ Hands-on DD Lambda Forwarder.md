@@ -30,7 +30,7 @@ provider "aws" {
 resource "aws_lambda_function" "dd-lambda-forwarder" {
   function_name = "my-ddog-lambda-forwarder"
   handler      = "lambda_function.lambda_handler"
-  runtime      = "python3.13"
+  runtime      = "python3.12"
   architectures = ["arm64"]
   role         = aws_iam_role.lambda_exec.arn
   memory_size = 512
@@ -42,6 +42,7 @@ resource "aws_lambda_function" "dd-lambda-forwarder" {
     variables = {
       DD_API_KEY     = "ddapikey"
     }
+  }
 
   source_code_hash = filebase64sha256("lambda_function.zip")
 }
