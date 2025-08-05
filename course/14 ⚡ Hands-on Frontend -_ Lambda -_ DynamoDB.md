@@ -58,7 +58,7 @@
       })
     })
     getbutton.addEventListener('click', () => {
-      postrs.value = 'getting..'
+      getrs.value = 'getting..'
       fetch(url+getkey.value).then(rs => rs.json())
       .then(rs => {
         getrs.value = JSON.stringify(rs, null, 4)
