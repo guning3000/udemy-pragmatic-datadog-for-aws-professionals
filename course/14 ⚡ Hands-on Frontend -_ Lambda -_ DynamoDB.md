@@ -109,7 +109,7 @@ arn:aws:lambda:us-east-1:464622532012:layer:Datadog-Python313:109
 
 extension
 ```
-arn:aws:lambda:us-east-1:464622532012:layer:Datadog-Python313:109
+arn:aws:lambda:us-east-1:464622532012:layer:Datadog-Extension:78
 ```
 
 Add Tags:
@@ -118,6 +118,35 @@ Add Tags:
 * `DD_SERVICE`: `mye2eapp`
 * `DD_SITE`: `datadoghq.com`
 * `DD_TRACE_ENABLED`: `true`
+
+## Instrument Frontend -> Lambda
+
+allowedTracingUrls
+https://docs.datadoghq.com/tracing/other_telemetry/rum/?tab=browserrum#setup-rum
+
+```html
+window.DD_RUM.init({
+   clientToken: '<CLIENT_TOKEN>',
+   applicationId: '<APPLICATION_ID>',
+   site: 'datadoghq.com',
+   //  service: 'my-web-application',
+   //  env: 'production',
+   //  version: '1.0.0',
+   allowedTracingUrls: [
+     "https://api.example.com",
+     // Matches any subdomain of my-api-domain.com, such as https://foo.my-api-domain.com
+     /^https:\/\/[^\/]+\.my-api-domain\.com/,
+     // You can also use a function for advanced matching:
+     (url) => url.startsWith("https://api.example.com")
+   ],
+   sessionSampleRate: 100,
+   sessionReplaySampleRate: 100, // if not included, the default is 100
+   trackResources: true,
+   trackLongTasks: true,
+   trackUserInteractions: true,
+ })
+```
+
 
 
 
