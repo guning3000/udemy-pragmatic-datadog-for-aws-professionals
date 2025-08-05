@@ -2,6 +2,28 @@
 
 ![](../imgs/f99909e225124430bef663e93e32c022.png)
 
+assume role trust template
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::464622532012:root"
+            },
+            "Action": "sts:AssumeRole",
+            "Condition": {
+                "StringEquals": {
+                    "sts:ExternalId": "yourexternalid"
+                }
+            }
+        }
+    ]
+}
+```
+
 https://docs.datadoghq.com/integrations/amazon-web-services/
 
 <details>
