@@ -20,19 +20,19 @@
   </style>
 </head>
 <body>
-  <h3>POST</h3> 
+  <h3>POST</h3>
   <b>key</b>: <input type="text" style="font-size:30px;" id="postkey"/><br>
   <b>message</b>: <input type="text" style="font-size:30px;" id="postmsg"/><br>
-  <button id="postbutton">POST</button> 
+  <button id="postbutton">POST</button>
   <br>
-  <textarea id="postrs" style="width:600px;height:300px;"></textarea>
+  <textarea id="postrs" style="width:600px;height:300px;"></textarea>      
   <br>
-  <h3>GET</h3> 
-  <b>key</b>: <input type="text" style="font-size:30px;" id="getkey"/>
+  <h3>GET</h3>
+  <b>key</b>: <input type="text" style="font-size:30px;" id="getkey"/>     
   <button id="getbutton">GET</button>
   <br>
   result:<br>
-  <textarea id="getrs" style="width:600px;height:300px;"></textarea>
+  <textarea id="getrs" style="width:600px;height:300px;"></textarea>       
   <script>
     var postkey = document.querySelector('#postkey')
     var postmsg = document.querySelector('#postmsg')
@@ -43,8 +43,10 @@
     var gertrs = document.querySelector('#getrs')
 
     var url = 'myurl'
+    url = 'https://jvvuofoy6ufckcwtcfaq652fme0itkwj.lambda-url.us-east-1.on.aws/'
 
     postbutton.addEventListener('click', () => {
+      postrs.value = 'posting..'
       fetch(url, {
         method: 'POST',
         body: JSON.stringify({
@@ -57,6 +59,7 @@
       })
     })
     getbutton.addEventListener('click', () => {
+      postrs.value = 'getting..'
       fetch(url+getkey.value).then(rs => rs.json())
       .then(rs => {
         getrs.value = JSON.stringify(rs, null, 4)
