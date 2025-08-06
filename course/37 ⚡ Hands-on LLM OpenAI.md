@@ -7,7 +7,7 @@ https://docs.datadoghq.com/llm_observability/instrumentation/sdk/?tab=python
 ## app code
 
 ```python
-from datadog import ddtrace
+import ddtrace
 ddtrace.patch_all()
 import os
 from openai import OpenAI
@@ -31,6 +31,7 @@ def lambda_handler(event, context):
 ```dockerfile
 FROM public.ecr.aws/amazonlinux/amazonlinux:2023
 
+RUN yum -y install python3 python3-pip
 RUN pip3 install datadog openai
 
 ENV DD_API_KEY=ddapikey
@@ -43,7 +44,7 @@ ENV DD_TRACE_ENABLED=true
 
 COPY ./app.py /app.py
 
-CMD ["app.lambda_handler"]
+CMD ["python3", "/app.py"]
 ```
 
 
@@ -66,6 +67,6 @@ build push
 ```bash
 docker build -t $img .
 docker tag $img $accid.dkr.ecr.us-east-1.amazonaws.com/$img:latest
-docker push $accid.dkr.ecr.us-east-1.amazonaws.com/img:latest
+docker push $accid.dkr.ecr.us-east-1.amazonaws.com/$img:latest
 ```
 
