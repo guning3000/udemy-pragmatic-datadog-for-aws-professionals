@@ -2,7 +2,7 @@
 
 ![](../imgs/659472717ad1441d95fd1a624b51f219.png)
 
-lambda code
+## app code
 
 ```python
 import os
@@ -22,28 +22,46 @@ def lambda_handler(event, context):
   print(completion)
 ```
 
-## Instrument Lambda with Datadog
+## dockerfile
 
-handler
+```dockerfile
+FROM public.ecr.aws/amazonlinux/amazonlinux:2023
 
+RUN pip3 install datadog openai
+
+ENV DD_API_KEY=ddapikey
+ENV OPENAI_API_KEY=openaiapikey
+ENV DD_LLMOBS_ENABLED=1
+ENV DD_LLMOBS_ML_APP=myopenaiapp
+ENV DD_SERVICE=myopenaiapp
+ENV DD_LLMOBS_AGENTLESS_ENABLED=1
+ENV DD_TRACE_ENABLED=true
+
+COPY ./app.py /app.py
+
+CMD ["app.lambda_handler"]
 ```
-datadog_lambda.handler.handler
+
+
+```bash
+export accid="654654299310"
+export img=myopenai
 ```
 
-Layer
-runtime
-```
-arn:aws:lambda:us-east-1:464622532012:layer:Datadog-Python313:109
+login
+```bash
+aws ecr get-login-password --region us-east-1 | docker login -u AWS --password-stdin $accid.dkr.ecr.us-east-1.amazonaws.com
 ```
 
-envs
-* `DD_API_KEY`: `ddapikey`
-* `OPENAI_API_KEY`: `openaiapikey`
-* `DD_LLMOBS_ENABLED`: `1`
-* `DD_LLMOBS_ML_APP`: `myopenaiapp`
-* `DD_SERVICE`: `myopenaiapp`
-* `DD_LLMOBS_AGENTLESS_ENABLED`: `1`
-* `DD_LAMBDA_HANDLER`: `lambda_function.lambda_handler`
-* `DD_TRACE_ENABLED`: `true`
+create ecr
+```
+aws ecr create-repository --repository-name $img
+```
 
+build push
+```bash
+docker build -t $img .
+docker tag $img $accid.dkr.ecr.us-east-1.amazonaws.com/$img:latest
+docker push $accid.dkr.ecr.us-east-1.amazonaws.com/img:latest
+```
 
