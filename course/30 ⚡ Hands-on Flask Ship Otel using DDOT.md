@@ -94,3 +94,26 @@ RUN pip3 install opentelemetry-exporter-otlp
 CMD ["python3", "/app.py"]
 ```
 
+
+```
+export accid="654654299310"
+export img="flaskddot"
+```
+
+login
+```bash
+aws ecr get-login-password --region us-east-1 | docker login -u AWS --password-stdin $accid.dkr.ecr.us-east-1.amazonaws.com
+```
+
+create ecr
+```
+aws ecr create-repository --repository-name $img
+```
+
+build push
+```bash
+docker build -t $img .
+docker tag $img $accid.dkr.ecr.us-east-1.amazonaws.com/$img:latest
+docker push $accid.dkr.ecr.us-east-1.amazonaws.com/$img:latest
+```
+
