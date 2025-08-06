@@ -6,32 +6,6 @@ https://docs.datadoghq.com/opentelemetry/#option-2-use-the-datadog-agent-with-dd
 
 ![](../imgs/af0499440ed244be96f46b44c138a5cd.png)
 
-## dd-agent
-
-https://docs.datadoghq.com/opentelemetry/setup/otlp_ingest_in_the_agent/?tab=docker
-
-* envs
-  * `DD_OTLP_CONFIG_RECEIVER_PROTOCOLS_GRPC_ENDPOINT`: `0.0.0.0:4317`
-  * `DD_OTLP_CONFIG_RECEIVER_PROTOCOLS_HTTP_ENDPOINT`: `0.0.0.0:4318`
-
-* image: `public.ecr.aws/datadog/agent:latest`
-* envs
-  * `DD_API_KEY`
-  * `ECS_FARGATE`: `true`
-  * `DD_APM_ENABLED`: `true`
-  * `DD_SITE`: `datadoghq.com`
-  * `DD_TAGS`: `env:dev service:myflask`
-  
-```
-{ "name": "DD_API_KEY", "value": "myapikey" },
-{ "name": "ECS_FARGATE", "value": "true" },
-{ "name": "DD_APM_ENABLED", "value": "true" },
-{ "name": "DD_SITE", "value": "datadoghq.com" },
-{ "name": "DD_TAGS", "value": "env:dev service:myflask" },
-{ "name": "DD_OTLP_CONFIG_RECEIVER_PROTOCOLS_GRPC_ENDPOINT", "value": "0.0.0.0:4317" },
-{ "name": "DD_OTLP_CONFIG_RECEIVER_PROTOCOLS_HTTP_ENDPOINT", "value": "0.0.0.0:4318" }
-```
-
 ## app
 
 ```python
@@ -117,3 +91,28 @@ docker tag $img $accid.dkr.ecr.us-east-1.amazonaws.com/$img:latest
 docker push $accid.dkr.ecr.us-east-1.amazonaws.com/$img:latest
 ```
 
+## dd-agent
+
+https://docs.datadoghq.com/opentelemetry/setup/otlp_ingest_in_the_agent/?tab=docker
+
+* envs
+  * `DD_OTLP_CONFIG_RECEIVER_PROTOCOLS_GRPC_ENDPOINT`: `0.0.0.0:4317`
+  * `DD_OTLP_CONFIG_RECEIVER_PROTOCOLS_HTTP_ENDPOINT`: `0.0.0.0:4318`
+
+* image: `public.ecr.aws/datadog/agent:latest`
+* envs
+  * `DD_API_KEY`
+  * `ECS_FARGATE`: `true`
+  * `DD_APM_ENABLED`: `true`
+  * `DD_SITE`: `datadoghq.com`
+  * `DD_TAGS`: `env:dev service:myflask`
+  
+```
+{ "name": "DD_API_KEY", "value": "myapikey" },
+{ "name": "ECS_FARGATE", "value": "true" },
+{ "name": "DD_APM_ENABLED", "value": "true" },
+{ "name": "DD_SITE", "value": "datadoghq.com" },
+{ "name": "DD_TAGS", "value": "env:dev service:myflask" },
+{ "name": "DD_OTLP_CONFIG_RECEIVER_PROTOCOLS_GRPC_ENDPOINT", "value": "0.0.0.0:4317" },
+{ "name": "DD_OTLP_CONFIG_RECEIVER_PROTOCOLS_HTTP_ENDPOINT", "value": "0.0.0.0:4318" }
+```
