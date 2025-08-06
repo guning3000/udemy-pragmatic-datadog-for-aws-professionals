@@ -21,6 +21,12 @@ layer runtime
 arn:aws:lambda:us-east-1:464622532012:layer:Datadog-Python313:109
 ```
 
+layer extension
+
+```
+arn:aws:lambda:us-east-1:464622532012:layer:Datadog-Extension:78
+```
+
 Add Tags:
 * `DD_API_KEY`: `myapikey`
 * `DD_SITE`: `datadoghq.com`
