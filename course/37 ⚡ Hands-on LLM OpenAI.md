@@ -7,44 +7,55 @@ https://docs.datadoghq.com/llm_observability/instrumentation/sdk/?tab=python
 ## app code
 
 ```python
-import ddtrace
-ddtrace.patch_all()
 import os
 from openai import OpenAI
+import ddtrace
+ddtrace.patch_all()
+from ddtrace.llmobs import LLMObs
+LLMObs.enable(
+  ml_app="myopenapiapp",
+  api_key=os.environ['DD_API_KEY'],
+  site="datadoghq.com",
+  agentless_enabled=True,
+)
 
-def lambda_handler(event, context):
-  oai_client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
-  
-  completion = oai_client.chat.completions.create(
+def lambda_handler(event,context):
+    oai_client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+
+    completion = oai_client.chat.completions.create(
      model="gpt-3.5-turbo",
      messages=[
       {"role": "system", "content": "You are a helpful customer assistant for a furniture store."},
       {"role": "user", "content": "I'd like to buy a chair for my living room."},
-  ],
-  )
-  
-  print(completion)
+    ],
+    )
+
+    print(completion)
+    LLMObs.flush()
+    return {
+            "statusCode": 200
+    }
 ```
 
 ## dockerfile
 
 ```dockerfile
-FROM public.ecr.aws/amazonlinux/amazonlinux:2023
+FROM public.ecr.aws/lambda/python:3.11
 
-RUN yum -y install python3 python3-pip
-RUN pip3 install datadog openai
+RUN pip3 install openai ddtrace
 
-ENV DD_API_KEY=ddapikey
-ENV OPENAI_API_KEY=openaiapikey
+ENV DD_API_KEY=
+ENV OPENAI_API_KEY=
 ENV DD_LLMOBS_ENABLED=1
 ENV DD_LLMOBS_ML_APP=myopenaiapp
 ENV DD_SERVICE=myopenaiapp
 ENV DD_LLMOBS_AGENTLESS_ENABLED=1
 ENV DD_TRACE_ENABLED=true
+ENV DD_SITE=datadoghq.com
 
-COPY ./app.py /app.py
+COPY ./app.py /var/task/app.py
 
-CMD ["python3", "/app.py"]
+CMD ["app.lambda_handler"]
 ```
 
 
