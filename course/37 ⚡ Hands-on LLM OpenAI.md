@@ -41,6 +41,9 @@ envs
 * `OPENAI_API_KEY`: `openaiapikey`
 * `DD_LLMOBS_ENABLED`: `1`
 * `DD_LLMOBS_ML_APP`: `myopenaiapp`
+* `DD_SERVICE`: `myopenaiapp`
 * `DD_LLMOBS_AGENTLESS_ENABLED`: `1`
+* `DD_LAMBDA_HANDLER`: `lambda_function.lambda_handler`
+* `DD_TRACE_ENABLED`: `true`
 
 
