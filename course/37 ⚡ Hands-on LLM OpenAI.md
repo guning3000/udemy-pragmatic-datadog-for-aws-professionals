@@ -2,9 +2,13 @@
 
 ![](../imgs/659472717ad1441d95fd1a624b51f219.png)
 
+https://docs.datadoghq.com/llm_observability/instrumentation/sdk/?tab=python
+
 ## app code
 
 ```python
+from datadog import ddtrace
+ddtrace.patch_all()
 import os
 from openai import OpenAI
 
