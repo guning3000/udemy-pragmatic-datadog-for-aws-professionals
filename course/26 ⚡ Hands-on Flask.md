@@ -65,6 +65,15 @@ docker push $accid.dkr.ecr.us-east-1.amazonaws.com/myflask:latest
 
 `ddtrace-run python3 app.py`
 
+```
+# Basic configuration
+FORMAT = ('%(asctime)s %(levelname)s [%(name)s] [%(filename)s:%(lineno)d] '
+          '[dd.service=%(dd.service)s dd.env=%(dd.env)s dd.version=%(dd.version)s dd.trace_id=%(dd.trace_id)s dd.span_id=%(dd.span_id)s] '
+          '- %(message)s')
+log = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format=FORMAT)
+```
+
 * `DD_SERVICE`: `myflask`
 * `DD_ENV`: `dev`
 * `DD_VERSION`: `1.0`
