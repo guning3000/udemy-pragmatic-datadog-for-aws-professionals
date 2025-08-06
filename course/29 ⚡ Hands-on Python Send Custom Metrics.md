@@ -30,7 +30,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    logging.info("request received") 
     statsd.distribution('guning.custom.distribution', random.randint(0, 20), tags=["env:dev"])
     return 'Hello, World!'
 
