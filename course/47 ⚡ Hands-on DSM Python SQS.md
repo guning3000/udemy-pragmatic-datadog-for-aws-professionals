@@ -2,6 +2,8 @@
 
 ![](../imgs/bc5017e9ec994fde926f213e291f7eb6.png)
 
+https://docs.datadoghq.com/data_streams/
+
 ## create SQS
 
 ## app producer
