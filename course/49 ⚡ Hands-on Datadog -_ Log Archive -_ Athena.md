@@ -4,3 +4,18 @@
 
 https://docs.datadoghq.com/logs/log_configuration/forwarding_custom_destinations/?tab=http
 
+```
+CREATE EXTERNAL TABLE mytable (
+  `date` STRING,
+  host STRING,
+  attributes MAP<STRING, STRING>,
+  `_id` STRING,
+  source STRING,
+  message STRING,
+  status STRING,
+  tags ARRAY<STRING>
+)
+PARTITIONED BY (dt INT, hour INT)
+ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
+LOCATION 's3path'
+```
