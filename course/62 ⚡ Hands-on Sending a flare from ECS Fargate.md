@@ -2,6 +2,7 @@
 
 ![](../imgs/d5a21845646f47de9779d328b2a5d354.png)
 
+https://docs.datadoghq.com/agent/troubleshooting/send_a_flare/?tab=agent
 
 ## simple flask application
 
