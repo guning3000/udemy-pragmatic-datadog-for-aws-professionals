@@ -52,7 +52,7 @@ envs
 ```bash
 export DD_DATA_STREAMS_ENABLED=true
 export DD_ENV=dev
-export DD_SERVICE=producer-app
+export DD_SERVICE=consumer-app
 ```
 
 consumer.py
