@@ -105,5 +105,14 @@ https://github.com/DataDog/dd-trace-py/releases
 python 3.11.2
 
 
+## caveat
+
+https://docs.datadoghq.com/tracing/trace_collection/automatic_instrumentation/single-step-apm/kubernetes/?tab=agentv764recommended#enable-apm-on-your-applications
+
+Single Step Instrumentation does not instrument applications in the namespace where the Datadog Agent is installed. Install the Agent in a separate namespace where you do not run your applications.
+
+
+
+
 
 
