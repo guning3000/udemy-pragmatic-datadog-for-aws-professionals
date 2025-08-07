@@ -9,19 +9,42 @@ https://docs.datadoghq.com/data_streams/
 ## start kafka container
 
 ```bash
-docker run -dit --name kafka \
-  -p 9092:9092 \
-  -e KAFKA_ENABLE_KRAFT=yes \
-  -e KAFKA_CFG_PROCESS_ROLES=broker,controller \
-  -e KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER \
-  -e KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093 \
-  -e KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT \
-  -e KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092 \
-  -e KAFKA_CFG_BROKER_ID=1 \
-  -e KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093 \
-  -e ALLOW_PLAINTEXT_LISTENER=yes \
-  -e KAFKA_KRAFT_CLUSTER_ID=r4zt_wrqTRuT7W2NJsB_GA \
-  bitnami/kafka:3.3.1 
+mkdir data
+chmod -R 777 data
+```
+
+https://dev.to/deeshath/apache-kafka-kraft-mode-setup-5nj
+
+```bash
+name: 'stream'
+version: '3.8'
+services:
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    hostname: kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    environment:
+      KAFKA_KRAFT_MODE: "true"  # This enables KRaft mode in Kafka.
+      KAFKA_PROCESS_ROLES: controller,broker  # Kafka acts as both broker and controller.
+      KAFKA_NODE_ID: 1  # A unique ID for this Kafka instance.
+      KAFKA_CONTROLLER_QUORUM_VOTERS: "1@localhost:9093"  # Defines the controller voters.
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LOG_DIRS: /var/lib/kafka/data  # Where Kafka stores its logs.
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"  # Kafka will automatically create topics if needed.
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1  # Since we’re running one broker, one replica is enough.
+      KAFKA_LOG_RETENTION_HOURS: 168  # Keep logs for 7 days.
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0  # No delay for consumer rebalancing.
+      CLUSTER_ID: "Mk3OEYBSD34fcwNTJENDM2Qk"  # A unique ID for the Kafka cluster.
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data:/var/lib/kafka/data  # Store Kafka logs on your local machine.
 ```
 
 ## producer app
