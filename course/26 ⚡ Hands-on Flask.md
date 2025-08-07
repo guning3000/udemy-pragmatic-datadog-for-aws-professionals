@@ -36,6 +36,7 @@ CMD ["python3", "/app.py"]
 
 ```bash
 export accid="654654299310"
+export img="myflask"
 ```
 
 login
@@ -45,14 +46,14 @@ aws ecr get-login-password --region us-east-1 | docker login -u AWS --password-s
 
 create ecr
 ```
-aws ecr create-repository --repository-name myflask
+aws ecr create-repository --repository-name $img
 ```
 
 build push
 ```bash
-docker build -t myflask .
-docker tag myflask $accid.dkr.ecr.us-east-1.amazonaws.com/myflask:latest
-docker push $accid.dkr.ecr.us-east-1.amazonaws.com/myflask:latest
+docker build -t $img .
+docker tag $img $accid.dkr.ecr.us-east-1.amazonaws.com/$img:latest
+docker push $accid.dkr.ecr.us-east-1.amazonaws.com/$img:latest
 ```
 
 ## add datadog
