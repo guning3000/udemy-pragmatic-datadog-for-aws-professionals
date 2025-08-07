@@ -4,9 +4,11 @@
 
 ## fluentbit conf
 
+https://github.com/aws/aws-for-fluent-bit/blob/mainline/use_cases/init-process-for-fluent-bit/README.md
+
 fluentbit image
 ```
-public.ecr.aws/aws-observability/aws-for-fluent-bit:stable
+public.ecr.aws/aws-observability/aws-for-fluent-bit:init-latest
 ```
 
 https://github.com/aws-samples/amazon-ecs-firelens-examples/blob/mainline/examples/fluent-bit/multi-config-support/task-definition.json
@@ -45,57 +47,6 @@ https://github.com/aws-samples/amazon-ecs-firelens-examples/blob/mainline/exampl
 ## app
 
 
-## simple flask application
+`public.ecr.aws/docker/library/python:3.12`
 
-```python
-from flask import Flask
-import logging
-
-# Basic configuration
-logging.basicConfig(level=logging.INFO)
-
-app = Flask(__name__)
-
-@app.route('/')
-def hello_world():
-    logging.info("request received") 
-    return 'Hello, World!'
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
-```
-
-dockerfile
-
-```
-FROM public.ecr.aws/docker/library/python:3.12
-
-COPY ./app.py /app.py
-
-RUN pip3 install flask flask-cors
-
-CMD ["python3", "/app.py"]
-```
-
-```bash
-export accid="654654299310"
-export img="myflaskfluentbitdualship"
-```
-
-login
-```bash
-aws ecr get-login-password --region us-east-1 | docker login -u AWS --password-stdin $accid.dkr.ecr.us-east-1.amazonaws.com
-```
-
-create ecr
-```
-aws ecr create-repository --repository-name $img
-```
-
-build push
-```bash
-docker build -t $img .
-docker tag $img $accid.dkr.ecr.us-east-1.amazonaws.com/$img:latest
-docker push $accid.dkr.ecr.us-east-1.amazonaws.com/$img:latest
-```
 
