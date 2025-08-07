@@ -8,7 +8,11 @@
 
 https://stackoverflow.com/questions/49573258/installing-postgresql-client-v10-on-aws-amazon-linux-ec2-ami
 
+amazon linux 2
 `sudo amazon-linux-extras install postgresql10`
+
+amazon linux 2023
+`yum -y install postgresql17`
 
 ## add datadog user
 
