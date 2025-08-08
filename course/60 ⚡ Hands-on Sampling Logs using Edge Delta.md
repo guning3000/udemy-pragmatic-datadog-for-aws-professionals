@@ -1,41 +1,43 @@
 # 60 ⚡ Hands-on Sampling Logs using Edge Delta
 
-![](../imgs/0de22e603c7549c0b3d0e6c16e508939.png)
+![](../imgs/6fbf612c41624bbaa96a57bbe70f8a59.png)
 
 
 https://docs.fluentbit.io/manual/2.0/pipeline/outputs/forward
 
 ```
-docker run -it --rm public.ecr.aws/aws-observability/aws-for-fluent-bit:latest bash
+docker run -u 0 --rm -it public.ecr.aws/docker/library/fluentd:latest sh
 ```
 
 ```
-[INPUT]
-    Name    dummy
-    Dummy   {"message":"info message", "level": "info"}
-    Rate    100
-    
-[INPUT]
-    Name    dummy
-    Dummy   {"message":"err message", "level": "err"}
-    Rate    100
-    
-[INPUT]
-    Name    dummy
-    Dummy   {"message":"warn message", "level": "warn", "service": "payments"}
-    Rate    100
-    
-[OUTPUT]
-    Name    stdout
-    Match         *
+<source>
+  @type dummy
+  tag dummy.log
+  dummy {"message": "error occurred", "level": "error"}
+  rate 30
+</source>
 
-[OUTPUT]
-    Name          forward
-    Match         *
-    Host          127.0.0.1
-    Port          24284
-    Shared_Key    secret
-    Self_Hostname flb.local
-    tls           on
-    tls.verify    off
+<source>
+  @type dummy
+  tag dummy.log
+  dummy {"message": "info occurred", "level": "info"}
+  rate 30
+</source>
+
+<source>
+  @type dummy
+  tag dummy.log
+  dummy {"message": "debug occurred", "level": "debug"}
+  rate 30
+</source>
+
+<match dummy.**>
+  @type forward
+  heartbeat_interval 1s
+  
+  <server>
+    host my_host
+    port my_port
+  </server>
+</match>
 ```
