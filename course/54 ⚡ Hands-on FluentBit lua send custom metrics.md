@@ -72,7 +72,7 @@ function run(tag, timestamp, record)
             local headers = {
                 ["Content-Type"] = "application/json",
                 ["Content-Length"] = #payload,
-                ["DD-API-KEY"] = "c4ea205ec71c2dfc8e994489d34875e2" 
+                ["DD-API-KEY"] = "myapikey" 
             }
 
             local response_body = {}
