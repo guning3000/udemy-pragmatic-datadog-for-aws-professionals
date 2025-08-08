@@ -14,20 +14,21 @@ docker run -it --rm public.ecr.aws/aws-observability/aws-for-fluent-bit:latest b
 [INPUT]
     Name    dummy
     Dummy   {"message":"info message", "level": "info"}
-    Samples 10
-    Rate    10
+    Rate    100
     
 [INPUT]
     Name    dummy
     Dummy   {"message":"err message", "level": "err"}
-    Samples 10
-    Rate    10
+    Rate    100
     
 [INPUT]
     Name    dummy
     Dummy   {"message":"warn message", "level": "warn", "service": "payments"}
-    Samples 10
-    Rate    10
+    Rate    100
+    
+[OUTPUT]
+    Name    stdout
+    Match         *
 
 [OUTPUT]
     Name          forward
