@@ -1,3 +1,5 @@
 # 57 ⚡ Hands-on Generate Metrics from Logs inside Datadog
 
 ![](../imgs/0a8c1e0c13bc4728b519a20e0bc453f5.png)
+
+https://docs.datadoghq.com/logs/log_configuration/logs_to_metrics/
