@@ -1,6 +1,6 @@
 # 59 ⚡ Hands-on Sampling Logs using Datadog O11y Pipelines
 
-![](../imgs/0a761a503c6d43b3802a6c8458c84a92.png)
+![](../imgs/019e10bcbbc44359906fd63b3e765f0b.png)
 
 https://www.datadoghq.com/blog/observability-pipelines-log-volume-control/?_gl=1*q0tx3*_gcl_au*NTc2NTk2MTUuMTc0Njk4MjI5MC4yOTUyMzQ3MTIuMTc1NDE5MzM2Ny4xNzU0MTkzMzkw*_ga*NTM5Mzg5MzYwLjE3NDg3MDY0NzU.*_ga_KN80RDFSQK*czE3NTQ2Mjc1NzckbzE0JGcwJHQxNzU0NjI3NjM3JGo2MCRsMCRoMTAwNjY2NzQzNw..*_fplc*ZGxnTCUyRkFSd1dUUCUyRnhDU1FJV1g0ak0lMkZsJTJGclBDRjRUUW05NUIlMkIyN29yRDJuRzNUSk5LbURRNHFUSzVJZkszUzZQakNaamslMkIzU1liYU1TWjNlZUdRdlFUWldUSlhuWEUyUTRiaDNxNUZUQnFyeFhhSDByY1RhVXklMkZtb25WTFElM0QlM0Q.
 
