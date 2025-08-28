@@ -1,3 +1,5 @@
+labs for https://www.udemy.com/course/pragmatic-datadog-for-aws-professionals/  
+
 ||||
 |-|-|-|
 |[11 ⚡ Hands-on Simple Frontend](./course/11%20⚡%20Hands-on%20Simple%20Frontend.md)  ![](./imgs/6c11decad6c54b3eb90b39139d8505b5.png)|[12 ⚡ Hands-on Angular application](./course/12%20⚡%20Hands-on%20Angular%20application.md)  ![](./imgs/18a89e0680cc40a3824c241360107047.png)|[13 ⚡ Hands-on Simple android kotlin](./course/13%20⚡%20Hands-on%20Simple%20android%20kotlin.md)  ![](./imgs/b1de57270d034bc786e43f7759043be7.png)|
